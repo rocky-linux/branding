@@ -28,10 +28,13 @@ for icolor in icon_colors:
         backgrounds = filter(lambda color: icolor != color, backgrounds)
 
         for bgcolor in backgrounds:
-            if bgcolor == "primary":
-                bgcolor = "#10B981"
+            bgcolor_code = bgcolor
+            if icolor == "black" and bgcolor_code == "primary":
+                continue
+            if bgcolor_code == "primary":
+                bgcolor_code = "#10B981"
             with Image(width=image.width + 1024, height=image.height + 1024,
-                background=Color(bgcolor)) as bg:
+                background=Color(bgcolor_code)) as bg:
                 bg.composite(image, 512, 512)
                 for size in out_sizes:
                     with Image.convert(bg, 'png') as out:
@@ -51,12 +54,13 @@ for icolor in icon_colors:
                 backgrounds = filter(lambda color: tcolor != color, backgrounds)
 
                 for bgcolor in list(backgrounds):
-                    if (icolor == "black" or tcolor == "black") and bgcolor == "primary":
+                    bgcolor_code = bgcolor
+                    if (icolor == "black" or tcolor == "black") and bgcolor_code == "primary":
                         continue
-                    elif bgcolor == "primary":
-                        bgcolor = "#10B981"
+                    elif bgcolor_code == "primary":
+                        bgcolor_code = "#10B981"
                     with Image(width=image.width + 512 + 1260 + text.width + 512, height=image.height + 1024,
-                        background=Color(bgcolor)) as bg:
+                        background=Color(bgcolor_code)) as bg:
                         bg.composite(image, 512, 512)
                         bg.composite(text, 5868, 1384)
                         for size in out_sizes:

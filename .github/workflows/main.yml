@@ -1,0 +1,22 @@
+---
+name: 'Branding Build System'
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  logo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9.x'
+      - name: Build source artifact
+        run: |
+          python3 -m virtualenv venv
+          source venv/bin/activate
+          pip3 install -r requirements.txt
+          python3 logo/build.py
+          tar cfj logo-build.tar.xz logo/out
