@@ -67,4 +67,13 @@ for icolor in icon_colors:
                             with Image.convert(bg, 'png') as out:
                                 out_scale = bg.height / size
                                 out.resize(height=size, width=int(bg.width / out_scale))
+                                out.save(filename=f'{script_dir}/out/logo-padded-bg_{bgcolor}-{icolor}_{tcolor}-{size}x.png')
+                    with Image(width=image.width + 1260 + text.width, height=image.height,
+                        background=Color(bgcolor_code)) as bg:
+                        bg.composite(image, 0, 0)
+                        bg.composite(text, 5356, 872)
+                        for size in out_sizes:
+                            with Image.convert(bg, 'png') as out:
+                                out_scale = bg.height / size
+                                out.resize(height=size, width=int(bg.width / out_scale))
                                 out.save(filename=f'{script_dir}/out/logo-bg_{bgcolor}-{icolor}_{tcolor}-{size}x.png')
