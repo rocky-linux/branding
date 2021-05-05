@@ -1,6 +1,6 @@
 # Rocky Linux Branding repo
 
-The branding assets making up the logo & icon for Rocky Linux.
+The branding assets that make up the logo & icon for Rocky Linux.
 
 ## License
 
