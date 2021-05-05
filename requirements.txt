@@ -1,0 +1,5 @@
+#
+# Project Python dev/build dependencies
+#
+
+Wand # needed for imagemagick bindings
